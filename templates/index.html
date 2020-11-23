@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="../static/js/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="../static/js/data-handler.js"></script>
+    <script type="text/javascript" src="../static/js/activity-handler.js"></script>
+    <script type="text/javascript" src="../static/js/create_activity-handler.js"></script>
+    <script type="text/javascript" src="../static/js/monitor_activity-handler.js"></script>
+    <script type="text/javascript" src="../static/js/tracker_activity-handler.js"></script>
+    <script type="text/javascript" src="../static/js/update_activity-handler.js"></script>
+    <script type="text/javascript" src="../static/js/create_account-handler.js"></script>
+    <script type="text/javascript" src="../static/js/hide_n_show-handler.js"></script>
+    <script type="text/javascript" src="../static/js/counter-handler.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
+    <link rel="stylesheet" href="../static/css/card_view.css">
+    <link rel="stylesheet" href="../static/css/header_view.css">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <link href="../static/image/favicon.ico" rel='icon' type='image/x-icon'/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
+    <title>Tracker</title>
+</head>
+<br>
+
+<div class="form-popup" id="myForm">
+    <img src="../static/image/icons-clock-50.png" class="icon_image"></br>
+    <div id="create_user">
+        <p class="pointer" id="create_account">Create Account</p></br>
+        <div class="user_data" id="user_details" hidden>
+            <input type="text" class="user_data" placeholder="Enter Username" id="create_username" required></br>
+            <input type="text" class="user_data" placeholder="Enter Email" id="create_email" required></br>
+            <input type="password" class="user_data" placeholder="Enter Password" id="create_psw" required></br>
+            <button type="button" class="user_data" id="create_login">Create</button>
+        </div>
+    </div>
+    <div id="login_user">
+        <p class="pointer" id="login_here">Login</p></br>
+        <div id="login_details">
+            <!--label><b>Email</b></label-->
+            <input type="text" class="user_data1" placeholder="Enter Email" id="email" required></br>
+
+            <!--label><b>Password</b></label-->
+            <input type="password" class="user_data1" placeholder="Enter Password" id="psw" required></br>
+
+            <button type="button" class="user_data1" id="login">Login</button>
+        </div>
+    </div>
+</div>
+
+<div class="header" id="header" hidden>
+    <div class="header_container">
+        <img src="../static/image/icons-clock-50.png" class="logo">
+        <label id="user_name"></label></br>
+        <div id="show" hidden>
+
+            <!--select id="operation" onchange="activity_show()">
+            <option disabled selected value>---</option>
+            <option value="create_activity">Create Activity</option>
+            <option value="monitor_activity">Monitor Activity</option>
+            <option value="delete_activity">Delete Activity</option>
+        </select--></br>
+            <label id="routine">Routine</label></br>
+            <label id="activity_creation">Create</label></br>
+            <label id="monitor_activities">Monitor</label></br>
+        </div>
+        <label id="count_down">Counter</label></br>
+        <a href="#about">About</a></br>
+        <a href="{{ url_for('logout') }}" id="log_out">Log Out</a></br>
+
+    </div>
+</div>
+
+<div id="count_down_display" style="margin-bottom: 30px; margin-top: 30px" hidden>
+    <label id="counter">Counter Down Timer</label></br>
+    <input type="text" id="time_count"/></br>
+    <button type="button" id="start_counter">Start</button>
+    </br>
+    <label id="show_counter"></label></br>
+    <source id="music" src="../static/audio/music.mp3" type="audio/ogg">
+</div>
+
+<div class="activity_container" id="create_activity" hidden>
+    <div class="activity_card">
+        <label class="heading"> Create activity</label><br>
+        <!--label class="activity_card"><b>Activity Name</b></label-->
+        <input type="text" class="activity_card" placeholder="Enter Activity Name" id="activity_name" required><br>
+        <!--label class="activity_card"><b>Activity Type</b></label-->
+        <select class="activity_card" id="activity_type">
+            <option disabled selected value>Select Activity Type</option>
+            <option value="study">Study</option>
+            <option value="project">Project</option>
+            <option value="work">Work</option>
+            <option value="sleep">Sleep</option>
+        </select><br>
+        <input type="text" class="activity_card" placeholder="Enter Daily Target" id="daily_target" required><br>
+        <!--select class="activity_card" id="target_type">
+            <option disabled selected value>Select Daily Target</option>
+            <option value="30min">30min</option>
+            <option value="1hr">1hr</option>
+            <option value="2hr">2hr</option>
+            <option value="3hr">3hr</option>
+            <option value="4hr">4hr</option>
+            <option value="5hr">5hr</option>
+            <option value="more">More</option>
+        </select><br>
+        <label class="activity_card"><b>Note</b></label><br-->
+        <textarea class="activity_card" name="paragraph_text" cols="50" rows="10" placeholder="Add Note if any"
+                  id="activity_note"></textarea><br>
+        <button id="add_activity">ADD</button>
+    </div>
+</div>
+
+<div id="monitor_activity" hidden>
+    <div id="activity_list">
+        <label id="Activit_name"> Activities</label>
+        <table>
+            <tbody class="pointer" id="tbody">
+            </tbody>
+        </table>
+    </div>
+    <div id="show_data" hidden>
+        <label id="ac_name" name="activity_name"></label></br>
+        <label id="ac_type" name="activity_type"></label></br>
+        <label id="ac_target" name="target_type"></label></br>
+
+
+        <div id="update_activity">
+            From
+            <input type="time" id="from_time"/>
+            To
+            <input type="time" id="to_time"/>
+            <button id="add_update">Update</button>
+        </div>
+
+        <div class="graph_container">
+            <canvas class="myChart" id="myChart"></canvas>
+        </div>
+    </div>
+
+</div>
+
+
+<div id="delete_activity" hidden>
+    Delete activity
+</div>
+</body>
+<!--script src="../static/css/graph-handler.js"></script-->
+
+</html>
