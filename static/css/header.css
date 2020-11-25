@@ -29,7 +29,7 @@
 }
 
 .navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: whitesmoke;
+  background-color: black;
 }
 
 .dropdown-content {
