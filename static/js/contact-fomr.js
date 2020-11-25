@@ -1,28 +1,29 @@
 $(document).ready(function () {
-    $('#create_login').click(function () {
-        var username = $('#create_username').val();
+    $('#create_submit').click(function () {
+        var username = $('#name').val();
+        var phone_no = $('#create_phone_number').val();
         var email_id = $('#create_email').val();
-        var password = $('#create_psw').val();
+        var message = $('#create_message').val();
+        console.log(username);
         $.ajax({
-            url: '/create_login',
+            url: 'https://digitechnovators-v1.herokuapp.com/submit',
             dataType: "json",
             contentType: "application/json",
             data: JSON.stringify({
-                username: username,
+                name: username,
+                phone_no: phone_no,
                 email_id: email_id,
-                password: password
+                message: message
             }),
             type: 'POST',
             success: function (response) {
                 res = response;
 
-                if (res["status"] == "Invalid") {
-                    alert(res["status"]);
+                if (res["status"] != "Invalid") {
+                    alert("Successfully Submitted...!");
                 } else {
-                    alert(res["status"]);
+                    alert("Please Check your Email");
                 }
-                $("#create_username").html("");
-                $("#create_email").html("");
             },
             error: function (error) {
                 alert("No data found")
