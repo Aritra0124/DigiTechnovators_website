@@ -1,0 +1,21 @@
+#contact-us {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 420px;
+    height: 450px;
+    justify-content: center;
+    align-content: space-around;
+    align-items: center;
+    text-align: center;
+    padding: 6%;
+    background: azure;
+    box-sizing: border-box;
+    overflow: hidden;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+    object-fit: fill;
+}
