@@ -6,7 +6,7 @@ $(document).ready(function () {
         var message = $('#create_message').val();
         console.log(username);
         $.ajax({
-            url: '/submit',
+            url: 'https://digitechnovators-v1.herokuapp.com/submit',
             dataType: "json",
             contentType: "application/json",
             data: JSON.stringify({
