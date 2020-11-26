@@ -1,10 +1,22 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .header {
   overflow: hidden;
-  background-color: #f1f1f1;
-  padding: 20px 10px;
+  background-color: #d7dedb;
+  padding-right: 50px;
+  padding-left: 0px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  height: 6%;
+  width:100%;
+  position: fixed;
 }
 
 .header a {
+  float: left;
   color: black;
   text-align: center;
   padding: 12px;
@@ -14,26 +26,42 @@
   border-radius: 4px;
 }
 
-.header a.logo {
+.header {
   font-size: 25px;
   font-weight: bold;
 }
 
+.active{
+  background-color: #fc750c;
+}
+
 .header a:hover {
-  background-color: #ddd;
+  background-color: #fc750c;
   color: black;
 }
 
-.header a.active {
-  color: black;
-}
 
 .header-right {
   float: right;
 }
 
-.dropbtn{
-    float: right;
+.logo{
+  float: left;
+  height: 50px;
+  width: 100px;
+}
 
+@media screen and (max-width: 500px) {
+  .logo{
+    float: top;
+  }
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
 
+  .header-right {
+    float: none;
+  }
 }
